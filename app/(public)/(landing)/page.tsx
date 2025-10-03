@@ -9,6 +9,7 @@ import Script from "next/script"
 import { PageSchema } from "@/app/(public)/(landing)/constants"
 import { Metadata } from "next"
 import { getStaticMeta } from "@/utils/getStaticMeta"
+import FSI from "@/components/shared/FSI/fsi"
 
 export const metadata: Metadata = { ...getStaticMeta("/") }
 
@@ -28,7 +29,8 @@ export default function LandingPage() {
       <Features />
       <TariffSection />
       <Feedback />
-      <FAQ></FAQ>
+      <FAQ />
+      <FSI />
     </>
   )
 }

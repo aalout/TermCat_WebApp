@@ -24,7 +24,7 @@ const TariffSection = () => {
           <Typography center className={"md:px-[1vw] lg:px-[8vw]"} color="darkGray" variants={"p"}>
             Наш нейросетевой CAT-Tool инструмент предлагает несколько тарифных планов, <br />
             чтобы удовлетворить различные потребности пользователей, <br className="hidden xl:flex" />
-            от фрилансеров до крупных корпоративных клиентов.
+            от фрилансеров до крупных корпоративных клиентов
           </Typography>
         </div>
 
