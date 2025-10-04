@@ -7,11 +7,11 @@ import Container from "@/components/shared/Container/Container"
 function FSI() {
   return (
     <Container>
-      <div className="flex w-full justify-center mb-20">
+      <div className="flex flex-col md:flex-row items-center w-full justify-center mb-20">
         <div>
           <Image width={200} height={114} src={fsi_logo} alt={"fsi-logo"} objectFit="cover" />
         </div>
-        <Typography variants="p" color="lightGray">
+        <Typography className="text-center md:text-start" variants="p" color="lightGray">
           Продукт разработан при&nbsp;поддержке <br /> Фонда Содействия инновациям в&nbsp;рамках <br /> программы
           «Студенческий&nbsp;стартап»
         </Typography>
