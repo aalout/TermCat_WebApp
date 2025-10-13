@@ -1,26 +1,37 @@
 import { AxiosError } from "axios"
-import client from "@/package/api/axios.client"
+import axios from "axios"
 import Cookies from "universal-cookie"
 
 export type RefreshTokenResponse = {
   status: number
 }
 
-export async function refreshToken(): Promise<RefreshTokenResponse | unknown> {
+export async function refreshToken(): Promise<RefreshTokenResponse | undefined> {
   try {
-    const response = await client<{ accessToken: string }>({
-      method: "POST",
-      url: "/auth/refresh",
-      headers: {
-        "Content-Type": "application/json"
+    console.log("Calling refresh token API route")
+
+    const cookies = new Cookies()
+    const refreshTokenValue = cookies.get("TermCatRefreshToken")
+
+    if (!refreshTokenValue) {
+      console.error("No refresh token found in cookies")
+      return undefined
+    }
+
+    const response = await axios.post<{ accessToken: string }>(
+      "/api/auth/refresh",
+      { refreshToken: refreshTokenValue },
+      {
+        headers: {
+          "Content-Type": "application/json"
+        }
       }
-    })
+    )
 
     const { accessToken } = response.data
 
     if (typeof window !== "undefined") {
-      const cookies = new Cookies()
-      cookies.set("accessToken", accessToken, { path: "/", maxAge: 13 * 60 })
+      cookies.set("TermCatAccessToken", accessToken, { path: "/", maxAge: 13 * 60 })
     }
 
     return { status: 200 }
