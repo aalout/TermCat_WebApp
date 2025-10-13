@@ -32,7 +32,7 @@ export async function loginUser({ email, password }: LoginBody): Promise<LoginRe
 
     setClientTokens(accessToken, refreshToken)
 
-    return { status: 200, accessToken, refreshToken }
+    return { status: 200 }
   } catch (error) {
     return {
       status: 401,

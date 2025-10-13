@@ -2,33 +2,28 @@ import { AxiosError } from "axios"
 import client from "@/package/api/axios.client"
 import Cookies from "universal-cookie"
 
-export type RefreshTokenBody = {
-  refreshToken: string
-}
-
 export type RefreshTokenResponse = {
-  accessToken: string
+  status: number
 }
 
-export async function refreshToken({ refreshToken }: RefreshTokenBody): Promise<string | undefined> {
+export async function refreshToken(): Promise<RefreshTokenResponse | unknown> {
   try {
-    const res = await client<RefreshTokenResponse>({
+    const response = await client<{ accessToken: string }>({
       method: "POST",
       url: "/auth/refresh",
-      data: { refreshToken },
       headers: {
         "Content-Type": "application/json"
       }
     })
 
-    const newAccessToken = res.data.accessToken
+    const { accessToken } = response.data
 
     if (typeof window !== "undefined") {
       const cookies = new Cookies()
-      cookies.set("accessToken", newAccessToken, { path: "/", maxAge: 13 * 60 })
+      cookies.set("accessToken", accessToken, { path: "/", maxAge: 13 * 60 })
     }
 
-    return newAccessToken
+    return { status: 200 }
   } catch (error) {
     const axiosError = error as AxiosError<{ message: string }>
     console.error("Refresh token error:", axiosError.response?.data || axiosError.message)
