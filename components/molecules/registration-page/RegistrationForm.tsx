@@ -59,17 +59,18 @@ function RegistrationForm() {
 
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault()
+
     if (!isFormValid) {
       openErrorModal()
       return
     }
 
-    const register = await registerUser(name, email, password)
+    const register = await registerUser(email, password, name)
 
-    if (register) {
+    if (register.success) {
       window.location.href = "/WebApp"
     } else {
-      alert("Ошибка регистрации")
+      alert(register.error || "Ошибка регистрации")
     }
   }
 

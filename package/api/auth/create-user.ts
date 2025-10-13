@@ -8,8 +8,8 @@ export type RegisterBody = {
 }
 
 export type RegisterResponse = {
-  accessToken: string
-  refreshToken: string
+  accessToken?: string
+  refreshToken?: string
   user?: {
     id: string
     email: string
@@ -33,16 +33,17 @@ export async function registerUser(email: string, password: string, name: string
   }
 
   try {
-    const response: ResponseConfig<RegisterResponse> = await client<RegisterResponse, RegisterBody>(config)
-    const { accessToken, refreshToken } = response.data
+    const response: ResponseConfig<RegisterResponse> = await client<RegisterResponse, unknown, RegisterBody>(config)
 
-    if (!accessToken || !refreshToken) {
+    if (!response.data || !response.data.accessToken || !response.data.refreshToken) {
       return { success: false, error: "Invalid tokens received" }
     }
-
+    const { accessToken, refreshToken } = response.data
     setClientTokens(accessToken, refreshToken)
 
-    return { success: true }
+    return {
+      success: true
+    }
   } catch (error) {
     return {
       success: false,
