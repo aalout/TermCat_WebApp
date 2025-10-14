@@ -8,8 +8,6 @@ export type RefreshTokenResponse = {
 
 export async function refreshToken(): Promise<RefreshTokenResponse | undefined> {
   try {
-    console.log("Calling refresh token API route")
-
     const cookies = new Cookies()
     const refreshTokenValue = cookies.get("TermCatRefreshToken")
 

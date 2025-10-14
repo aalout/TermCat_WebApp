@@ -26,7 +26,7 @@ function RegistrationForm() {
         router.push("/WebApp")
       }
     } catch (error) {
-      console.log(error)
+      console.error(error)
     }
   }
 

@@ -3,6 +3,7 @@
 import { useRouter } from "next/navigation"
 import { navItems } from "@/constants/navItems"
 import NavItem from "./NavItem"
+import { logoutUser } from "@/package/api/auth/logout-user"
 
 const MobileNav = () => {
   const router = useRouter()
@@ -12,7 +13,7 @@ const MobileNav = () => {
       router.push(`/WebApp/dialogs/create`)
     },
     logout: async () => {
-      // логаут
+      await logoutUser()
       window.location.reload()
     }
   }

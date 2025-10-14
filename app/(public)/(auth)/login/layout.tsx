@@ -17,7 +17,6 @@ export default function AuthLayout({ children }: Readonly<{ children: ReactNode 
 
       if (refreshTokenCookie) {
         try {
-          console.log("ok")
           const result = await refreshToken()
 
           if (result) {

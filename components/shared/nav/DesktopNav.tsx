@@ -3,6 +3,7 @@
 import { useRouter } from "next/navigation"
 import NavItem from "./NavItem"
 import { navItems } from "@/constants/navItems"
+import { logoutUser } from "@/package/api/auth/logout-user"
 
 const DesktopNav = () => {
   const router = useRouter()
@@ -11,7 +12,7 @@ const DesktopNav = () => {
       router.push(`/WebApp/dialogs/create`)
     },
     logout: async () => {
-      //функция логаут
+      await logoutUser()
       window.location.reload()
     }
   }

@@ -27,7 +27,6 @@ export default function ProfileLayout({
           const result = await refreshToken()
 
           if (result && (result as { status: number }).status === 200) {
-            console.log("Access token successfully refreshed")
           } else {
             console.error("Failed to refresh token")
             router.push("/login")

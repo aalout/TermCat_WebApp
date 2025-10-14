@@ -3,8 +3,6 @@ import { cookies } from "next/headers"
 import axios from "axios"
 
 export async function POST() {
-  console.log("ok")
-
   try {
     const cookieStore = await cookies()
     const TermCatRefreshToken = cookieStore.get("TermCatRefreshToken")?.value

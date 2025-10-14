@@ -31,19 +31,16 @@ const Chat = ({ id, dialog }: ChatProps) => {
 
     // Показываем сообщение пользователя сразу
     setMessages((prev) => [...prev, { text: userMessage, role: "user" }])
-    console.log("Отправка на сервер:", userMessage)
 
     try {
       // Ждём ответа с сервера
       const response: BotMessage = await sendMessage(userMessage, id)
-      console.log("Ответ с сервера:", response)
 
       // Создаём объект типа Message из ответа сервера
       const botMessage: MessageType = { text: response.response, role: "assistant" }
 
       // Добавляем ответ бота в стейт
       setMessages((prev) => [...prev, botMessage])
-      console.log("Обновлённый стейт:", [...messages, botMessage])
     } catch (error) {
       console.error("Ошибка при отправке сообщения:", error)
     } finally {
