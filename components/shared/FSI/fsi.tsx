@@ -12,8 +12,12 @@ function FSI() {
           <Image width={200} height={114} src={fsi_logo} alt={"fsi-logo"} objectFit="cover" />
         </div>
         <Typography className="text-center md:text-start" variants="p" color="lightGray">
-          Продукт разработан при&nbsp;поддержке <br /> Фонда Содействия инновациям в&nbsp;рамках <br /> программы
-          «Студенческий&nbsp;стартап»
+          Проект выполнен при&nbsp;поддержке
+          <br />
+          «Фонда содействия инновациям» в&nbsp;рамках <br />
+          программы «Студенческий стартап» федерального <br />
+          проекта «Платформа университетского <br />
+          технологического предпринимательства».
         </Typography>
       </div>
     </Container>
